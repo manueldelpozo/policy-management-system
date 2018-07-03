@@ -28,8 +28,10 @@ export class LoginComponent implements OnInit {
 
     /*this.authenticationservice.login(this.model.username, this.model.password).subscribe(
       data => {
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate(['/details']);
       }, err => err);*/
+
+    this.router.navigate(['/details']);
   }
 
 }

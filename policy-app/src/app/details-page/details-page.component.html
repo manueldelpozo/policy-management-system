@@ -1,3 +1,45 @@
-<p>
-  details-page works!
-</p>
+<h2>
+  Welcome
+  <strong *ngIf="!user.isAdmin; else adminName">{{ user.name }}</strong>
+  <ng-template #adminName>Admin</ng-template>
+</h2>
+
+<h3>Available Policies</h3>
+<table class="table-striped">
+  <tr>
+    <th>S. No</th>
+    <th>Policy Name</th>
+    <th>Policy Details</th>
+    <th *ngIf="user.isAdmin"></th>
+  </tr>
+  <tr *ngFor="let policy of user.policies; index as i">
+    <td>{{ i + 1 }}</td>
+    <td>{{ policy.name }}</td>
+    <td>{{ policy.details }}</td>
+    <td *ngIf="user.isAdmin"><a>Edit</a></td>
+  </tr>
+</table>
+
+<div *ngIf="!user.isAdmin">
+  <h3>
+    <strong>{{ user.name }}</strong>
+    Policy Details
+  </h3>
+  <table class="table-striped">
+      <tr>
+        <th>Policy No</th>
+        <th>Policy Name</th>
+        <th>Amount Paid</th>
+        <th>Policy End Date</th>
+        <th>Valid</th>
+      </tr>
+      <tr *ngFor="let policy of user.policies; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ policy.name }}</td>
+        <td>{{ policy.amount }}</td>
+        <td>{{ policy.endDate | date:'dd/mm/yyyy' }}</td>
+        <td *ngIf="policy.endDate < today; else valid">No</td>
+        <ng-template #valid>Yes</ng-template>
+      </tr>
+    </table>
+</div>
