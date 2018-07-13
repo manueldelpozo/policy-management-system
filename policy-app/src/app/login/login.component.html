@@ -1,16 +1,20 @@
-<div class="col-md-6 col-md-offset-3">
-	<h2>Welcome to the Site</h2>
-	<form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-		<div class="form-group">
-			<label for="username">Username</label>
-			<input type="text" class="form-control" name="username" required />
+<div class="col-md-8 offset-md-2 col-xs-12">
+	<h4>Welcome to the Site</h4>
+	<div *ngIf="isFailed" class="alert alert-danger" role="alert">
+		<span *ngIf="f.value.username!='Admin'">You are not registered User. <a [routerLink]="register">Register to login</a></span>
+		<span *ngIf="f.value.username=='Admin'">Contact Admin Service</span>
+	</div>
+	<form name="form" (ngSubmit)="login(f)" #f="ngForm" novalidate>
+		<div class="form-group form-row">
+			<label for="username" class="col-md-4">Username</label>
+			<input type="text" class="form-control col-md-8 col-xs-12" name="username" ngModel #username="ngModel" placeholder="Here your username or email address" required />
 		</div>
-		<div class="form-group">
-			<label for="password">Password</label>
-			<input type="password" class="form-control" name="password" required />
+		<div class="form-group form-row">
+			<label for="password" class="col-md-4">Password</label>
+			<input type="password" class="form-control col-md-8 col-xs-12" name="password" ngModel #password="ngModel" placeholder="Here your password" required />
 		</div>
-		<div class="form-group">
-			<button class="btn btn-primary">Login</button>
+		<div class="form-group form-row justify-content-end">
+			<button class="btn btn-primary col-md-8 col-xs-12">Login</button>
 		</div>
 	</form>
 </div>

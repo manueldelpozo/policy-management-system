@@ -4,8 +4,11 @@ app.listen(3000);
 const fs = require('fs');
 app.use(express.json());
 
-app.get('/login/userLogin', (req, res) => {
+app.post('/user/login', (req, res) => {
+    console.log(req);
     res.status(200).json({
         success: true
     });
 });
+
+app.listen(8090);

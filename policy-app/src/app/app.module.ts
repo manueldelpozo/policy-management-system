@@ -9,6 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavigatorComponent } from './navigator/navigator.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
+import { AuthenticationService } from 'app/authentication.service';
+import { PolicyService } from 'app/policy.service';
+import { DataService } from 'app/data.service';
 
 const appRoutes: Routes = [
   {
@@ -91,7 +94,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
-  providers: [],
+  providers: [
+    AuthenticationService,
+    PolicyService,
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

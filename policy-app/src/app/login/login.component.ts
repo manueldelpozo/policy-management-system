@@ -1,37 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Router, NavigationExtras } from '@angular/router';
 
+import { AuthenticationService } from '../authentication.service';
+
+import { DataService } from '../data.service';
 
 @Component({
-  // moduleID: module.id,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent implements OnInit {
-  model: any;
-  returnUrl: string;
+  isFailed: boolean = false;
+  user: any;
 
-  constructor(private route: ActivatedRoute, public router: Router) {
+  constructor(public router: Router, private authenticationService: AuthenticationService, private dataService: DataService) {
  }
 
   ngOnInit() {
     // reset login status
-    // this.authenticationservice.logout();
-    // get return url from parameters
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
+    this.authenticationService.logout();
+    this.dataService.currentUser.subscribe(user => this.user = user);
   }
 
-  login() {
-    alert('submit');
-
-    /*this.authenticationservice.login(this.model.username, this.model.password).subscribe(
+  login(f: NgForm) {
+    this.isFailed = false;
+    this.dataService.changeUser(f.value.username);
+    this.authenticationService.login(f.value.username, f.value.password).subscribe(
       data => {
-          this.router.navigate(['/details']);
-      }, err => err);*/
-
-    this.router.navigate(['/details']);
+        this.dataService.changeUser(data);
+        this.router.navigate(['/details']);
+      },
+      err => {
+        this.isFailed = true;
+        console.log(err);
+      });
   }
+  
 
 }

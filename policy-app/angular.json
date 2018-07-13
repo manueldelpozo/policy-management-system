@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular2-ssample": {
+    "policy-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular2-ssample:build"
+            "browserTarget": "policy-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular2-ssample:build:production"
+              "browserTarget": "policy-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular2-ssample:build"
+            "browserTarget": "policy-app:build"
           }
         },
         "test": {
@@ -94,34 +94,9 @@
           }
         }
       }
-    },
-    "angular2-ssample-e2e": {
-      "root": "",
-      "sourceRoot": "e2e",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "angular2-ssample:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
-  "defaultProject": "angular2-ssample",
+  "defaultProject": "policy-app",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

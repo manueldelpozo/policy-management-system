@@ -7,6 +7,7 @@ import { Routes, RouterModule, Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  userModel: object;
   constructor(private router: Router) {}
 }
 

@@ -2,3 +2,7 @@
 	content: ' *';
 	color: red;
 }
+
+button {
+    margin-top: 2em;
+}
