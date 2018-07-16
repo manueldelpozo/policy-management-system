@@ -39,10 +39,11 @@ public class PolicyManagementController {
 		return list;
 	}
 	
-	//@RequestMapping(value="/user/register", method=RequestMethod.POST)
-	//public User putUser(User user) {
-		//return userService.addUser(user);
-	//}
+	@RequestMapping(value="/user/register", method=RequestMethod.POST, produces="application/json")
+	public User putUser(@RequestBody User user) {
+		User newUser = userService.addUser(user);
+		return newUser;
+	}
 	
 	@RequestMapping(value="/policy/user", method=RequestMethod.POST, produces="application/json")
 	public List<UserPolicy> getUserPolicies(@RequestBody String id) {

@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private router: Router, 
-    // private userService: UserService
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -23,40 +23,58 @@ export class RegisterComponent implements OnInit {
   }
 
   register(f: NgForm) {
-    console.log(f);
     if (f.form.valid) {
-      console.log(f.value);
-      const dateOfBirth = new Date(f.value.dateOfBirth);
-
       if (f.value.password !== f.value.confirmPassword) {
-        this.message = 'Please confirm the password.';
-        this.success = false;
-      } else if (dateOfBirth.getTime() > Date.now()) {
-        this.message = 'Please add a proper date.';
-        this.success = false;
-      } else {
-        this.model.id = f.value.firstName + f.value.dateOfBirth.split('/')[0] + f.value.dateOfBirth.split('/')[1];
-        /* this.userService.create(this.model).subscribe(
+        this.message = 'Please confirm the same password.';
+      } 
+      if (!/\S+\_(\S+)?@\S+\.\S+/.test(f.value.email)) {
+        this.message = 'Your email address is invalid. Please use this format "email_address@example.com". ';
+      }
+      if (isNaN(f.value.contactNumber)) {
+        this.message = 'Your phone number should be only numbers. ';
+      }
+      this.success = false;
+        
+      if (f.value.password === f.value.confirmPassword && /\S+\_(\S+)?@\S+\.\S+/.test(f.value.email) && !isNaN(f.value.contactNumber) && this.isValidDate(f.value.dateOfBirth)) {
+        this.model = f.value;
+        this.model.id = f.value.firstName.toLowerCase() + f.value.dateOfBirth.split('/')[0] + f.value.dateOfBirth.split('/')[1];
+
+        this.userService.create(this.model).subscribe(
           data => {
-            alert('Your details are registered');
-            this.router.navigate(['/login']);
+            this.message = 'Welcome ' + this.model.id + '! You have been successfully registered! ';
+            this.success = true;
           },
           error => {
             console.log(error);
             this.message = 'Sorry, we have problems to register you. Try again later.';
             this.success = false;
-          }) */
-        this.message = 'You have successfully registered! ';
-        this.success = true;
+          })      
       }
     } else {
-      this.message = f.value.email ? 'The email is invalid. Please add "_".' : 'Some field is not valid or incomplete. Please check.';
+      this.message = 'Sorry, we found some empty fields.';
       this.success = false;
     }
+  }
 
-    
-      
-    
+  isValidDate(dateString) {
+    const date = new Date(dateString);
+    const today = new Date();
+    if (!date) {
+      this.message = 'Please insert the proper format for date dd/mm/yyyy.';
+      this.success = false;
+    } else {
+      if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) {
+        this.message = 'Please insert the proper format for date dd/mm/yyyy.';
+        this.success = false;
+      } else if (date.getTime() > Date.now() || Number(dateString.split('/')[2]) > today.getFullYear()) {
+        this.message = 'Your date of birth cannot be after current date. Please correct the date.';
+        this.success = false;
+      } else {
+        this.success = true;
+      }
+    }
+
+    return this.success;
   }
 
 }

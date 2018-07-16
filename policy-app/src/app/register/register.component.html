@@ -2,40 +2,40 @@
 	<h4>Customer Information</h4>
 	<div *ngIf="message" class="alert" [ngClass]="success?'alert-success':'alert-danger'" role="alert">
 		{{ message }} 
-		<span *ngIf="success">Please <a [routerLink]="">Log In</a></span>
+		<span *ngIf="success">Please <a [routerLink]="['../login']">Log In</a></span>
 	</div>
   	<form class="needs-validation" name="form" (ngSubmit)="register(f)" #f="ngForm" novalidate>
 		<div class="form-group form-row">
 			<label for="firstName" class="col-md-4">First Name</label>
-			<input type="text" class="form-control col-xs-12 col-md-8" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required pattern="^\w+" />
+			<input type="text" placeholder="Your name" class="form-control col-xs-12 col-md-8" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required pattern="^\w+" />
 		</div>
 		<div class="form-group form-row">
 			<label for="lastName" class="col-md-4">Last Name</label>
-			<input type="text" class="form-control col-xs-12 col-md-8" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required pattern="^\w+" />
+			<input type="text" placeholder="Your surname" class="form-control col-xs-12 col-md-8" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required pattern="^\w+" />
 		</div>
 		<div class="form-group form-row">
 			<label for="dateOfBirth" class="col-md-4">Date of Birth</label>
-			<input type="date" class="form-control col-xs-12 col-md-8" name="dateOfBirth" [(ngModel)]="model.dateOfBirth" #dateOfBirth="ngModel" required />
+			<input type="text" placeholder="When you got birth 'dd/mm/yyyy'" class="form-control col-xs-12 col-md-8" name="dateOfBirth" [(ngModel)]="model.dateOfBirth" #dateOfBirth="ngModel" required />
 		</div>
 		<div class="form-group form-row">
 			<label for="address" class="col-md-4">Address</label>
-			<input type="text" class="form-control col-xs-12 col-md-8" name="address" [(ngModel)]="model.address" #address="ngModel" required />
+			<input type="text" placeholder="Where you live" class="form-control col-xs-12 col-md-8" name="address" [(ngModel)]="model.address" #address="ngModel" required />
 		</div>
 		<div class="form-group form-row">
 			<label for="contactNumber" class="col-md-4">Contact No</label>
-			<input type="number" class="form-control col-xs-12 col-md-8" name="contactNumber" [(ngModel)]="model.contactNumber" #contactNumber="ngModel" required />
+			<input type="text" placeholder="Your phone number" class="form-control col-xs-12 col-md-8" name="contactNumber" [(ngModel)]="model.contactNumber" #contactNumber="ngModel" required />
 		</div>
 		<div class="form-group form-row">
 			<label for="email" class="col-md-4">Email address</label>
-			<input type="email" class="form-control col-xs-12 col-md-8" name="email" [(ngModel)]="model.email" #email="ngModel" required pattern="\w+\_(\w+)?\@\w+\.\w+"/>
+			<input type="email" placeholder="Your email. Please use '_'" class="form-control col-xs-12 col-md-8" name="email" [(ngModel)]="model.email" #email="ngModel" required/>
 		</div>
 		<div class="form-group form-row">
 			<label for="password" class="col-md-4">Password</label>
-			<input type="password" class="form-control col-xs-12 col-md-8" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+			<input type="password" placeholder="Choose a password" class="form-control col-xs-12 col-md-8" name="password" [(ngModel)]="model.password" #password="ngModel" required />
 		</div>
 		<div class="form-group form-row">
 			<label for="confirmPassword" class="col-md-4">Confirm Password</label>
-			<input type="password" class="form-control col-xs-12 col-md-8" name="confirmPassword" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" required />
+			<input type="password" placeholder="Repeat the password" class="form-control col-xs-12 col-md-8" name="confirmPassword" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" required />
 		</div>
 		<div class="form-group form-row justify-content-end">
 			<button type="reset" class="btn btn-secondary col-md-3 col-xs-12">Reset</button>

@@ -20,8 +20,8 @@ public class UserService {
 		return repository.findById(id);
 	}
 	
-	//public Optional addUser(User user) {
-		//return repository.save(user);
-	//}
+	public User addUser(User user) {
+		return repository.save(user);
+	}
 
 }

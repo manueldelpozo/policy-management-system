@@ -1,7 +1,7 @@
 <div class="col-md-8 offset-md-2 col-xs-12">
 	<h4>Welcome to the Site</h4>
 	<div *ngIf="isFailed" class="alert alert-danger" role="alert">
-		<span *ngIf="f.value.username!='Admin'">You are not registered User. <a [routerLink]="register">Register to login</a></span>
+		<span *ngIf="f.value.username!='Admin'">You are not registered User. <a [routerLink]="['../register']">Register to login</a></span>
 		<span *ngIf="f.value.username=='Admin'">Contact Admin Service</span>
 	</div>
 	<form name="form" (ngSubmit)="login(f)" #f="ngForm" novalidate>

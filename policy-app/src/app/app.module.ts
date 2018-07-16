@@ -12,6 +12,7 @@ import { DetailsPageComponent } from './details-page/details-page.component';
 import { AuthenticationService } from 'app/authentication.service';
 import { PolicyService } from 'app/policy.service';
 import { DataService } from 'app/data.service';
+import { UserService } from 'app/user.service';
 
 const appRoutes: Routes = [
   {
@@ -96,6 +97,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthenticationService,
+    UserService,
     PolicyService,
     DataService
   ],
